@@ -23,4 +23,18 @@ public class MembersServiceImpl implements MembersService {
 		return dao.insert(dto);
 	}
 
+import kh.spring.interfaces.MembersDAO;
+import kh.spring.interfaces.MembersService;
+
+@Component
+public class MembersServiceImpl implements MembersService{
+	
+	@Autowired
+	private MembersDAO dao;
+	
+	
+	@Override
+	public int idpwcheck(String id, String pw) {
+		return dao.idpwcheck(id, pw);
+	}
 }
