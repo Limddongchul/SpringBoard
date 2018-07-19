@@ -29,4 +29,22 @@ public class MembersController {
 		
 	}
 	
+	
+//	public ModelAndView idCheck(String id) {
+//		ModelAndView mav = new ModelAndView();
+//		int result = this.service.idCheck(id);
+//		
+//		mav.addObject("result", result);
+//		mav.setViewName(".");
+//		return mav;
+//	}
+	
+	@RequestMapping("/join.do")
+	public ModelAndView insert(MembersDTO dto) {
+		int result = this.service.insert(dto);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("index.jsp");
+		return mav;
+	}
 }
