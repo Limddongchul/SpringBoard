@@ -29,9 +29,6 @@ public class MembersController {
 		
 	}
 	
-
-	@Autowired
-	private MembersService service;
 	
 //	public ModelAndView idCheck(String id) {
 //		ModelAndView mav = new ModelAndView();
