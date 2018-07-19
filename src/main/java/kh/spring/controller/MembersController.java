@@ -21,7 +21,8 @@ public class MembersController {
 		ModelAndView mav = new ModelAndView();
 		
 		int result = service.idpwcheck(dto.getId(), dto.getPw());
-		
+		session.setAttribute("loginId", dto.getId());
+
 		mav.addObject("result", result);
 		mav.setViewName("loginProc.jsp");
 		

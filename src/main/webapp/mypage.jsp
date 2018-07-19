@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,15 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script>
-		if(${result}>0){
-			alert("로그인성공!");
-			location.href="mypage.jsp";
-		}
-		else{
-			alert("로그인실패!");
-			location.href="index.jsp";
-		}
-	</script>
+	<table border="1">
+		<tr>
+			<th>${sessionScope.loginId}님 환영합니다.</th>
+		</tr>
+		<tr>
+			<td>
+				<button>로그아웃</button>
+				<button>게시판으로가기</button>
+				<button>나의정보</button>
+				<button>회원탈퇴</button>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
