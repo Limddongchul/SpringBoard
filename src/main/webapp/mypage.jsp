@@ -1,22 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+	$(document).reday(function(){
+		$("#logout").click(function(){
+			$(location).attr("href","logout.do");
+		})
+		
+		$("#boardView").click(function(){
+			$(location).attr("href","boardView.do");
+		})
+		
+		$("#myInfo").click(function(){
+			$(location).attr("href","myInfo.do");
+		})
+		
+		$("#memberout").click(function(){
+			$(location).attr("href","memberout.do");
+		})
+	})
+</script>
+
 </head>
 <body>
-	<table border="1">
+	<table border="1" style="margin: 0 auto;">
 		<tr>
-			<th>${sessionScope.loginId}´Ô È¯¿µÇÕ´Ï´Ù.</th>
+			<th>${sessionScope.loginId}ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤.</th>
 		</tr>
 		<tr>
 			<td>
-				<button>·Î±×¾Æ¿ô</button>
-				<button>°Ô½ÃÆÇÀ¸·Î°¡±â</button>
-				<button>³ªÀÇÁ¤º¸</button>
-				<button>È¸¿øÅ»Åğ</button>
+				<button id="logout">ë¡œê·¸ì•„ì›ƒ</button>
+				<button id="boardView">ê²Œì‹œíŒìœ¼ë¡œê°€ê¸°</button>
+				<button id="myInfo">ë‚˜ì˜ì •ë³´</button>
+				<button id="memberout">íšŒì›íƒˆí‡´</button>
 			</td>
 		</tr>
 	</table>
