@@ -8,7 +8,7 @@
 <title>게시판</title>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
-	$(document).ready(fucntion(){
+	$(document).ready(function(){
 		$("#insert").click(function(){
 			$(location).attr("href", "BoardInsert.jsp");
 		})
@@ -16,7 +16,7 @@
 </script>
 </head>
 <body>
-	<table>
+	<table border=1>
 		<tr style="background-color: gray">
 			<td id="seq">No.</td>
 			<td id="title">제목</td>
@@ -30,7 +30,7 @@
 						<tr>
 							<td id="seq">${item.seq}
 							<td id="title"><a
-								href="boardView.do?no=${item.seq}&count=${item.count}"
+								href="articleView.do?no=${item.seq}&count=${item.count}"
 								class="no-uline">${item.title}</a>
 							<td id="writer">${item.writer}
 							<td id="count">${item.count}
@@ -48,5 +48,6 @@
 		</c:choose>
 	</table>
 	<button type="button" id="insert">글쓰기</button>
+	<div id="bottom" align=center>${navi}</div> 
 </body>
 </html>

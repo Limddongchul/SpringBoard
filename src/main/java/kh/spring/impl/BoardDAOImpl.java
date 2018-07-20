@@ -20,13 +20,15 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int insert(BoardDTO dto) {
-		String sql = "insert into spring_board values(spring_board_seq.nextval, ?, ?, ?, ?)";
-		return template.update(sql, dto.getTitle(),dto.getContents(), dto.getWriter(), dto.getCount());
+		String sql = "insert into spring_board values(spring_board_seq.nextval, ?, ?, ?, 0)";
+		System.out.println(dto.getSeq());
+		System.out.println(dto.getWriter());
+		return template.update(sql, dto.getTitle(),dto.getContents(), dto.getWriter());
 	}
 
 	@Override
 	public List<BoardDTO> getList() {
-		String sql = "select * from spring_board order by seq";
+		String sql = "select * from spring_board order by seq desc";
 		return template.query(sql, new RowMapper<BoardDTO>(){
 
 			@Override
