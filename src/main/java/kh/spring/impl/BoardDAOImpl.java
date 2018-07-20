@@ -21,8 +21,6 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int insert(BoardDTO dto) {
 		String sql = "insert into spring_board values(spring_board_seq.nextval, ?, ?, ?, 0)";
-		System.out.println(dto.getSeq());
-		System.out.println(dto.getWriter());
 		return template.update(sql, dto.getTitle(),dto.getContents(), dto.getWriter());
 	}
 

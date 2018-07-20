@@ -22,7 +22,7 @@ public class BoardController {
 	public ModelAndView getList() {
 		ModelAndView mav = new ModelAndView();
 		List<BoardDTO> result = service.getList();
-		System.out.println("½ÃÄö½º:"+result.get(4).getSeq());
+		System.out.println("½ÃÄö½º:"+result.get(0).getSeq());
 		mav.addObject("result", result);
 		mav.setViewName("BoardList.jsp");
 		return mav;
