@@ -5,15 +5,17 @@ public class BoardDTO {
 	private String title;
 	private String contents;
 	private String writer;
+	private int count;
 
 	public BoardDTO() { super();}
 
-	public BoardDTO(int seq, String title, String contents, String writer) {
+	public BoardDTO(int seq, String title, String contents, String writer, int count) {
 		super();
 		this.seq = seq;
 		this.title = title;
 		this.contents = contents;
 		this.writer = writer;
+		this.count = count;
 	}
 
 	public int getSeq() {
@@ -46,6 +48,14 @@ public class BoardDTO {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.seq = count;
 	}
 	
 	
