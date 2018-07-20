@@ -8,13 +8,13 @@
 </head>
 <body>
 	<script>
-		if(${result}>0){
-			alert("로그인성공!");
+		if(${result} > 0){
+			alert("회원탈퇴가 성공적으로 완료되었습니다.");
+			${session.invalidate()};
 			location.href="index.do";
-		}
-		else{
-			alert("로그인실패!");
-			location.href="index.do";
+		}else{
+			alert("회원탈퇴에 실패하였습니다.");
+			location.href="mypage.do";
 		}
 	</script>
 </body>
