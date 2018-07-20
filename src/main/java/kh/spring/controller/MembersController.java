@@ -23,7 +23,7 @@ public class MembersController {
 	public ModelAndView toLogin(MembersDTO dto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
-		int result = service.idpwcheck(dto.getId(), dto.getPw());
+		int result = service.idpwcheck(dto);
 		
 		if(result>0) {
 			session.setAttribute("loginId", dto.getId());

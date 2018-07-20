@@ -33,9 +33,9 @@ public class MembersDAOImpl implements MembersDAO{
 
 	
 	@Override
-	public int idpwcheck(String id, String pw) {
+	public int idpwcheck(MembersDTO dto) {
 		String sql = "select * from spring_member where id=? and pw=?";
-		return template.update(sql,id,pw);
+		return template.update(sql,dto.getId(),dto.getPw());
 	}
 	
 	@Override
