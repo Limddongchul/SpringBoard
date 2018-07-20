@@ -36,7 +36,11 @@ public class MembersServiceImpl implements MembersService{
 	}
 	
 	@Override
-	public List<MembersDTO> membersearch(String loginid) {
+	public MembersDTO membersearch(String loginid) {
 		return dao.membersearch(loginid);
+	}
+	@Override
+	public int update(MembersDTO dto) {
+		return dao.update(dto);
 	}
 }
