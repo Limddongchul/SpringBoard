@@ -9,5 +9,6 @@ public interface MembersDAO {
 	public int insert(MembersDTO dto);
 	public int idpwcheck(String id, String pw);
 	public int delete(String id);
-	public List<MembersDTO> membersearch(String loginid);
+	public MembersDTO membersearch(String loginid);
+	public int update(MembersDTO dto);
 }
