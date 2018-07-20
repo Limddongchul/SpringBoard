@@ -92,11 +92,26 @@ public class MembersController {
 	public ModelAndView myInfo(String loginid) {
 		ModelAndView mav = new ModelAndView();
 				
-		List<MembersDTO> result = service.membersearch(loginid);
+		MembersDTO result = service.membersearch(loginid);
 		
 		System.out.println(result);
 		mav.addObject("result", result);
+		mav.addObject("loginid", loginid);
 		mav.setViewName("myInfo.jsp");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/update.do")
+	public ModelAndView update(MembersDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		
+		int result = service.update(dto);
+		
+		System.out.println(result);
+		
+		mav.addObject("result", result);
+		mav.setViewName("updateProc.jsp");
 		
 		return mav;
 	}

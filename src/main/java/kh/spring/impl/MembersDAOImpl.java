@@ -45,8 +45,8 @@ public class MembersDAOImpl implements MembersDAO{
 	}
 	
 	@Override
-	public List<MembersDTO> membersearch(String loginid) {
-		return template.query("select * from spring_member where id=?", new Object[] {loginid}, new RowMapper<MembersDTO>() {
+	public MembersDTO membersearch(String loginid) {
+		return template.queryForObject("select * from spring_member where id=?", new Object[] {loginid}, new RowMapper<MembersDTO>() {
 			@Override
 			public MembersDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 				MembersDTO dto = new MembersDTO();
@@ -55,5 +55,11 @@ public class MembersDAOImpl implements MembersDAO{
 				return dto;
 			}
 		});
+	}
+	
+	@Override
+	public int update(MembersDTO dto) {
+		String sql = "update spring_member set name=?, pw=? where id=?";
+		return template.update(sql, dto.getName(),dto.getPw(),dto.getId());
 	}
 }
