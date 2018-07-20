@@ -8,4 +8,6 @@ public interface MembersService {
 	public int idCheck(String id);
 	public int insert(MembersDTO dto);
 	public int idpwcheck(String id, String pw);
+	public int delete(String id);
+	public List<MembersDTO> membersearch(String loginid);
 }

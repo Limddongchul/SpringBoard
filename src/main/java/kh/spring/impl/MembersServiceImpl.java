@@ -1,5 +1,7 @@
 package kh.spring.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,5 +28,15 @@ public class MembersServiceImpl implements MembersService{
 	@Override
 	public int idpwcheck(String id, String pw) {
 		return dao.idpwcheck(id, pw);
+	}
+	
+	@Override
+	public int delete(String id) {
+		return dao.delete(id);
+	}
+	
+	@Override
+	public List<MembersDTO> membersearch(String loginid) {
+		return dao.membersearch(loginid);
 	}
 }
