@@ -10,6 +10,7 @@
 	<script>
 		if(${result}>0){
 			alert("로그인성공!");
+			location.href="mypage.jsp";
 		}
 		else{
 			alert("로그인실패!");
