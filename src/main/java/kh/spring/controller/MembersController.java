@@ -1,5 +1,8 @@
 package kh.spring.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,16 @@ public class MembersController {
 		ModelAndView mav = new ModelAndView();
 		
 		int result = service.idpwcheck(dto.getId(), dto.getPw());
-		session.setAttribute("loginId", dto.getId());
+		
+		if(result>0) {
+			session.setAttribute("loginId", dto.getId());
 
-		mav.addObject("result", result);
-		mav.setViewName("loginProc.jsp");
+			mav.addObject("result", result);
+			mav.setViewName("loginProc.jsp");
+		}else {
+			mav.addObject("result", result);
+			mav.setViewName("loginProc.jsp");
+		}
 		
 		return mav;
 		
@@ -49,5 +58,46 @@ public class MembersController {
 		return mav;
 	}
 	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "index.jsp";
+	}
 	
+	@RequestMapping("/index.do")
+	public String index() {
+		return "index.jsp";
+	}
+	
+	@RequestMapping("/mypage.do")
+	public String mypage() {
+		return "mypage.jsp";
+	}
+	
+	@RequestMapping("/memberout")
+	public ModelAndView memberout(HttpServletRequest request,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+
+		
+		int result = service.delete((String)request.getSession().getAttribute("loginId"));
+
+		mav.addObject("result",result);
+		mav.addObject("session",session);
+		mav.setViewName("memberout.jsp");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/myInfo.do")	
+	public ModelAndView myInfo(String loginid) {
+		ModelAndView mav = new ModelAndView();
+				
+		List<MembersDTO> result = service.membersearch(loginid);
+		
+		System.out.println(result);
+		mav.addObject("result", result);
+		mav.setViewName("myInfo.jsp");
+		
+		return mav;
+	}
 }
