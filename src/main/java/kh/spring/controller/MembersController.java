@@ -21,12 +21,33 @@ public class MembersController {
 		ModelAndView mav = new ModelAndView();
 		
 		int result = service.idpwcheck(dto.getId(), dto.getPw());
-		
+		session.setAttribute("loginId", dto.getId());
+
 		mav.addObject("result", result);
 		mav.setViewName("loginProc.jsp");
 		
 		return mav;
 		
 	}
+	
+	
+//	public ModelAndView idCheck(String id) {
+//		ModelAndView mav = new ModelAndView();
+//		int result = this.service.idCheck(id);
+//		
+//		mav.addObject("result", result);
+//		mav.setViewName(".");
+//		return mav;
+//	}
+	
+	@RequestMapping("/join.do")
+	public ModelAndView insert(MembersDTO dto) {
+		int result = this.service.insert(dto);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("index.jsp");
+		return mav;
+	}
+	
 	
 }
