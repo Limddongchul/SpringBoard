@@ -55,7 +55,7 @@ public class BoardDTO {
 	}
 
 	public void setCount(int count) {
-		this.seq = count;
+		this.count = count;
 	}
 	
 	

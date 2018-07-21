@@ -20,7 +20,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int insert(BoardDTO dto) {
-		String sql = "insert into spring_board values(spring_board_seq.nextval, ?, ?, ?, 0)";
+		String sql = "insert into spring_board values(spring_board_seq.nextval, ?, ?, ?, 10)";
 		return template.update(sql, dto.getTitle(),dto.getContents(), dto.getWriter());
 	}
 
@@ -45,7 +45,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public BoardDTO BoardView(int seq) {
-		String sql = "select * from board where seq=?";
+		String sql = "select * from spring_board where seq=?";
 		return template.queryForObject(sql, new Object[] {seq}, new RowMapper<BoardDTO>() {
 
 			@Override

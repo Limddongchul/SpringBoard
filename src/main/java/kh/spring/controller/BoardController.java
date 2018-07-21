@@ -22,7 +22,6 @@ public class BoardController {
 	public ModelAndView getList() {
 		ModelAndView mav = new ModelAndView();
 		List<BoardDTO> result = service.getList();
-		System.out.println("½ÃÄö½º:"+result.get(0).getSeq());
 		mav.addObject("result", result);
 		mav.setViewName("BoardList.jsp");
 		return mav;
@@ -40,9 +39,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/articleView.do")
-	public ModelAndView boardView(int seq) {
+	public ModelAndView boardView(int no) {
 		ModelAndView mav = new ModelAndView();
-		BoardDTO result = service.BoardView(seq);
+		BoardDTO result = service.BoardView(no);
 		mav.addObject("result", result);
 		mav.setViewName("BoardView.jsp");
 		return mav;
