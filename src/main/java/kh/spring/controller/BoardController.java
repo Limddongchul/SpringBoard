@@ -19,10 +19,23 @@ public class BoardController {
 	private BoardService service;
 	
 	@RequestMapping("/boardView.do")
-	public ModelAndView getList() {
+	public ModelAndView getList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		List<BoardDTO> result = service.getList();
+		String navi;
+		int currentPage = 0;
+		String currentPageString = request.getParameter("currentPage");
+
+		if(currentPageString == null){
+			currentPage = 1;
+		}else {
+			currentPage = Integer.parseInt(currentPageString);
+		}
+
+		navi = service.getPageNavi(currentPage);
+		
+		List<BoardDTO> result = service.getList(currentPage*10-9,currentPage*10);
 		mav.addObject("result", result);
+		mav.addObject("navi",navi);
 		mav.setViewName("BoardList.jsp");
 		return mav;
 	}
@@ -30,7 +43,6 @@ public class BoardController {
 	
 	@RequestMapping("/boardInsert.do")
 	public ModelAndView insert(BoardDTO dto) {
-		System.out.println("µé¾î¿È");
 		ModelAndView mav = new ModelAndView();
 		int result = service.insert(dto);
 		mav.addObject("result", result);

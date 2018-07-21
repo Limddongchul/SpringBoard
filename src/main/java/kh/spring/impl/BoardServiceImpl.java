@@ -21,8 +21,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> getList() {
-		return dao.getList();
+	public List<BoardDTO> getList(int startNum, int endNum) {
+		return dao.getList(startNum, endNum);
 	}
 
 	@Override
@@ -39,5 +39,9 @@ public class BoardServiceImpl implements BoardService {
 	public BoardDTO BoardView(int seq) {
 		return dao.BoardView(seq);
 	}
-
+	
+	@Override
+	public String getPageNavi(int startNum) {
+		return dao.getPageNavi(startNum);
+	}
 }

@@ -2,7 +2,6 @@ package kh.spring.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -62,4 +61,6 @@ public class MembersDAOImpl implements MembersDAO{
 		String sql = "update spring_member set name=?, pw=? where id=?";
 		return template.update(sql, dto.getName(),dto.getPw(),dto.getId());
 	}
+	
+	
 }

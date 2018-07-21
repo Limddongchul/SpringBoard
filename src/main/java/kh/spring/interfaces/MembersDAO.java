@@ -11,4 +11,5 @@ public interface MembersDAO {
 	public int delete(String id);
 	public MembersDTO membersearch(String loginid);
 	public int update(MembersDTO dto);
+	
 }

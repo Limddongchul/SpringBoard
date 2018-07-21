@@ -25,9 +25,10 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardDTO> getList() {
-		String sql = "select * from spring_board order by seq desc";
-		return template.query(sql, new RowMapper<BoardDTO>(){
+	public List<BoardDTO> getList(int startNum, int endNum) {
+		String sql = "select * from (select spring_board.*, row_number() over(order by seq desc) as num from spring_board) where num between ? and ?";
+		Object[] params = {startNum, endNum};
+		return template.query(sql, params, new RowMapper<BoardDTO>(){
 
 			@Override
 			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -72,6 +73,80 @@ public class BoardDAOImpl implements BoardDAO {
 	public int update(BoardDTO dto) {
 		String sql = "update spring_board set contents=? where seq=?";
 		return template.update(sql, dto.getContents(), dto.getSeq());
+	}
+	
+	@Override
+	public String getPageNavi(int currentPage) {
+		String sql = "select count(*) totalCount from spring_board";
+		
+		int recordTotalCount=0;
+
+		recordTotalCount = template.query(sql, new RowMapper<Integer>() {
+			@Override
+			public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				return rs.getInt(1);
+			}
+		}).get(0);
+		
+		int recordCountPerPage = 10; 
+		int naviCountPerPage = 10;
+		int pageTotalCount = 0; 
+
+		if(recordTotalCount % recordCountPerPage > 0) { 
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		if(needPrev) {
+			sb.append("<a href='boardView.do?currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='boardView.do?currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='boardView.do?currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='boardView.do?currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+
+
+		String result = sb.toString();
+
+		return result;
 	}
 
 }

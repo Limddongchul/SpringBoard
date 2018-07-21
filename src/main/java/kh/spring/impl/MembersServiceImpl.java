@@ -43,4 +43,5 @@ public class MembersServiceImpl implements MembersService{
 	public int update(MembersDTO dto) {
 		return dao.update(dto);
 	}
+
 }
