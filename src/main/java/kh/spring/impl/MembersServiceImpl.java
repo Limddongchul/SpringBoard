@@ -26,8 +26,8 @@ public class MembersServiceImpl implements MembersService{
 	}
 
 	@Override
-	public int idpwcheck(MembersDTO dto) {
-		return dao.idpwcheck(dto);
+	public int idpwcheck(String id, String pw) {
+		return dao.idpwcheck(id,pw);
 	}
 	
 	@Override

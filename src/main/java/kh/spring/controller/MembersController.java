@@ -20,13 +20,13 @@ public class MembersController {
 	private MembersService service;
 	
 	@RequestMapping("/login.do")
-	public ModelAndView toLogin(MembersDTO dto, HttpSession session) {
+	public ModelAndView toLogin(String id, String pw, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
-		int result = service.idpwcheck(dto);
+		int result = service.idpwcheck(id,pw);
 		
 		if(result>0) {
-			session.setAttribute("loginId", dto.getId());
+			session.setAttribute("loginId", id);
 
 			mav.addObject("result", result);
 			mav.setViewName("loginProc.jsp");
