@@ -26,6 +26,19 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:/mapper/**/*mapper.xml"/>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>  
+		<!-- mapper의 바로 아래 있는 1개가 * 1개    여러개는 * 2개 -->
+		<!-- classpath는 src/main/resource를 말함 -->
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSession"></constructor-arg> <!-- 첫번쨰 인자에 sqlSession을 주겠다?-->
+	</bean>
+	
 	<tx:annotation-driven />
 	
 	<aop:aspectj-autoproxy/>

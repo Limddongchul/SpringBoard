@@ -31,6 +31,24 @@ public class TestAspect {
 	@Pointcut("execution(* kh.spring.impl.MembersServiceImpl.idpwcheck*(..))")
 	public void loginCout() {}
 	
+	
+	@Around("loginCout()")
+	public int loginsuccess(ProceedingJoinPoint pjp) {
+		String id = pjp.getArgs()[0].toString();
+		String pw = pjp.getArgs()[1].toString();
+		
+		pw=EncryptUtils.getSha256(pw);
+		
+		int result = 0;
+		
+		try {
+			result = (Integer)pjp.proceed(new Object[] {id,pw});
+		}catch(Throwable e) {
+			
+		}
+		return result;
+	}
+	
 /*	@Before("loginCout()")
 	public void loginsuccess(JoinPoint jp) {
 		MembersDTO dto = (MembersDTO)jp.getArgs()[0];
@@ -39,20 +57,11 @@ public class TestAspect {
 		dto.setPw(pw);
 	}*/
 	
-	@Around("loginCout()")
-	public int loginsuccess(ProceedingJoinPoint pjp) {
-		String id = pjp.getArgs()[0].toString();
-		String pw = pjp.getArgs()[1].toString();
-		
-		pw = EncryptUtils.getSha256(pw);
-		
-		int result =0;
-		
-		try {
-			result = (int)pjp.proceed(new Object[] {id,pw});
-		}catch(Throwable e) {
-			
-		}
-		return result;
-	}
+	
+//	HashMap을 통해서 했을경우
+/*	@Before("loginCout()")
+	public void loginsuccess(JoinPoint jp) {
+		HashMap<String,String> map = (HashMap)jp.getArgs()[0];
+		map.put("pw", EncryptUtils.getSha256(map.get("pw")));
+	}*/
 }

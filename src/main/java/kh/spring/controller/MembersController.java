@@ -1,6 +1,7 @@
 package kh.spring.controller;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,10 @@ public class MembersController {
 	@RequestMapping("/login.do")
 	public ModelAndView toLogin(String id, String pw, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		
+		/*Map<String,String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pw", pw);*/
 		
 		int result = service.idpwcheck(id,pw);
 		

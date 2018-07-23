@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Members">
+	<insert id="insert" parameterType="MembersDTO">
+		insert into spring_member values(spring_member_seq.nextval, #{id}, #{pw}, #{name})
+	</insert>
+	
+	<select id="idpwcheck" resultType="Integer">
+		select * from spring_member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<delete id="delete">
+		delete from spring_member where id=#{id}
+	</delete>
+	
+	<select id="selectsearch" resultType="MembersDTO">
+		select * from spring_member where id=#{id}
+	</select>
+	
+	<update id="update">
+		update spring_member set name=#{name}, pw=#{pw} where id=#{id}
+	</update>
+</mapper>
