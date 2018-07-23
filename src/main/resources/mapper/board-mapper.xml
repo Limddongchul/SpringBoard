@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+	<insert id="insert" parameterType="BoardDTO">
+		insert into spring_board values(spring_board_seq.nextval, #{title}, #{contents}, #{writer}, 10)
+	</insert>
+	<select id="getList" resultType="BoardDTO">
+		select * from (select spring_board.*, row_number() over(order by seq desc) as num from spring_board) where num between #{startNum} and #{endNum}
+	</select>
+	<select id="getPageNavi" resultType="Integer">
+		select count(*) totalCount from spring_board
+	</select>
+</mapper>
