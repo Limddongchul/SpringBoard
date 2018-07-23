@@ -100,8 +100,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public BoardDTO BoardView(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return template.selectOne("Board.boardview",seq);
 	}
 
 	@Override

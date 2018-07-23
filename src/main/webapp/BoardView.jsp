@@ -7,6 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	BoardView페이지
+	<table border=1>
+		<tr>
+			<td><label>글번호 : ${result.seq}</label> </td>
+		</tr>
+		<tr>
+			<th><label>제목 : </label>${result.title}</th>
+		</tr>
+		<tr>
+			<td><label>내용 : </label> ${result.contents}</td>
+		</tr>
+		<tr>
+			<td><label>작성자  : </label> ${result.writer }</td>
+		</tr>
+		<tr>
+			<td><label>조회수 : </label> ${result.count}</td>
+		</tr>
+	</table>
 </body>
 </html>

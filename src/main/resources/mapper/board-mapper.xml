@@ -11,4 +11,7 @@
 	<select id="getPageNavi" resultType="Integer">
 		select count(*) totalCount from spring_board
 	</select>
+	<select id="boardview" resultType="BoardDTO">
+		select * from spring_board where seq=#{seq}
+	</select>
 </mapper>
